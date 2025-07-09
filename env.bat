@@ -1,1 +1,1 @@
-set PATH=%PATH%;D:\Study\AI\Email spam detection
+set PATH=%PATH%;D:\Study\AI\Email spam detection\email-spam-detection---logistic-regression---classification
