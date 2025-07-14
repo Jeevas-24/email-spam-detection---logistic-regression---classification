@@ -15,27 +15,27 @@ df['Category'] = df['Category'].replace(['ham','spam'],['Not Spam','Spam']) # re
 print(df.head())
 
 # Split data set for Training and testing
-message = df['Message']
-category = df['Category']
+x = df['Message']
+y = df['Category']
 
-(message_train,message_test,category_train,category_test) = train_test_split(message,category,test_size=0.2) # splits the data and assigns it into appropriate variables with split percentage as 20 (test_size=0.2)
+(x_train,x_test,y_train,y_test) = train_test_split(x,y,test_size=0.2) # splits the data and assigns it into appropriate variables with split percentage as 20 (test_size=0.2)
 
 # Converts text into numbers
 cv = CountVectorizer(stop_words='english')
-features = cv.fit_transform(message_train) # converts message train into numeric value, extracts the features to make the model learn
+x_features = cv.fit_transform(x_train) # converts message train into numeric value, extracts the features to make the model learn
 
 # creating model
 model = MultinomialNB() # MultinomialNB is used for classifying the data
-model.fit(features,category_train) # learns from the feature along with label (category_train)
+model.fit(x_features,y_train) # learns from the feature along with label (category_train)
 
 # Test our model
-features_test = cv.transform(message_test)
-print(model.score(features_test,category_test))
+x_test = cv.transform(message_test)
+print(model.score(x_test,y_test))
 
 # Predict data
-# message_predict = cv.transform(['Congrats you won a lottery']).toarray()
-# print(type(message_predict))
-# print(model.predict(message_predict)) # predicts the mail
+# x_predict = cv.transform(['Congrats you won a lottery']).toarray()
+# print(type(x_predict))
+# print(model.predict(x_predict)) # predicts the mail
 
 def predict(m):
   message_predict = cv.transform([m]).toarray()
