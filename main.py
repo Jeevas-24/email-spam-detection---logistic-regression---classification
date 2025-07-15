@@ -29,13 +29,13 @@ model = MultinomialNB() # MultinomialNB is used for classifying the data
 model.fit(x_features,y_train) # learns from the feature along with label (category_train)
 
 # Test our model
-x_test = cv.transform(message_test)
-print(model.score(x_test,y_test))
+x_test_features = cv.transform(x_test)
+print(model.score(x_test_features,y_test))
 
 # Predict data
-# x_predict = cv.transform(['Congrats you won a lottery']).toarray()
-# print(type(x_predict))
-# print(model.predict(x_predict)) # predicts the mail
+x_predict = cv.transform(['Congrats you won a lottery']).toarray()
+print(type(x_predict))
+print(model.predict(x_predict)) # predicts the mail
 
 def predict(m):
   message_predict = cv.transform([m]).toarray()
@@ -44,12 +44,12 @@ def predict(m):
 
 # Streamlit web app
 
-st.header('Spam Detector')
+# st.header('Spam Detector')
 
-input = st.text_input('Enter the message')
-if st.button('Validate'):
-  output = predict(input)
-  st.markdown(output)
+# input = st.text_input('Enter the message')
+# if st.button('Validate'):
+#   output = predict(input)
+#   st.markdown(output)
 
 
 
